@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.c": "c",
-        "memfs.h": "c"
+        "memfs.h": "c",
+        "treegen.h": "c"
     }
 }

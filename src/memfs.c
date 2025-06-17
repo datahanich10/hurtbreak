@@ -104,7 +104,7 @@ size_t file_read(const file_t *file, void *dst, size_t n, size_t offset)
     return to_read;
 }
 
-node_t *dir_find_child(const dir_t *dir, const char *name)
+node_t * dir_find_child(const dir_t *dir, const char *name)
 {
     node_t *curr = dir->first_child;
     while (curr)
