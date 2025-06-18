@@ -28,23 +28,21 @@ void copy_dir(dir_t *dir, const dir_t* dir_original)
     
     char* copy_name = (char*)malloc(sizeof(dir_original->base.name));
     memcpy(copy_name, dir_original->base.name ,sizeof(dir_original->base.name));
-    
+    dir_t *copy = dir_create(copy_name, dir);
+    copy->base.mtime = dir_original->base.mtime;
+    for (const node_t *n = dir_original->first_child; n; n = n->next_sibling)
+    {
+        if(n->type == NODE_FILE)
+            copy_file(copy, (file_t *)n);
+        else
+            copy_dir(copy, (dir_t *)n);
+    }
+    dir_append_child(dir, copy);
 }
 
 
 
 void import_dir(const dir_t *src, dir_t *dest)
 {
-    for (const node_t *n = src->first_child; n; n = n->next_sibling)
-    {
-        if (!dir_find_child(dest, n->name))
-        {
-            if(n->type == NODE_FILE)
-            {
-                file_t *missing_file = (file_t *)n;
-                file_t *imported_file = file_create(missing_file->base.name, dest, missing_file->capacity);
-                impor
-            }
-        }
-    }
+    return;
 }
